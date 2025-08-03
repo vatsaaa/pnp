@@ -1,5 +1,9 @@
 # Human in the Loop is Not Enough: The Persistent and Evolving Limits of Human Oversight in High-Stakes AI
 
+**Copyright © 2025 Ankur Vatsa. All rights reserved.**
+
+*This work is protected by copyright. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the author, except in the case of brief quotations embodied in critical reviews and certain other noncommercial uses permitted by copyright law.*
+
 ## Abstract
 
 Artificial intelligence systems are increasingly deployed across high-stakes domains including financial regulation, healthcare, autonomous vehicles, and scientific publishing. The "human in the loop" (HITL) paradigm is widely implemented as a primary risk control mechanism. However, mounting empirical evidence demonstrates that HITL oversight is systematically inadequate in complex, high-volume, or time-sensitive environments. 
