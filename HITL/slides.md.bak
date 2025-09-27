@@ -1,0 +1,398 @@
+---
+marp: true
+theme: default
+class: lead
+paginate: true
+---
+
+# Human‑in‑the‑Loop is Not Enough
+### The Persistent and Evolving Limits of Human Oversight in High‑Stakes AI
+
+---
+
+## Human‑in‑the‑Loop (HITL)
+
+- **Common remedy** where intelligent systems hand over control to humans in several key scenarios:
+
+| **Key scenario** | **Description** |
+|---|---|
+| **Errors and anomalies observed** | AI detects anomalies or unexpected outputs |
+| | System confidence drops below threshold |
+| | Error conditions trigger human intervention |
+| **Low risk appetite** | High‑stakes decisions require human approval |
+| | Regulatory compliance mandates human oversight |
+| | Business‑critical processes need human validation |
+
+- not just "humans reviewing AI outputs" — it's a structured handover mechanism designed to catch AI limitations before they cause harm.
+
+<!--
+Speaker notes:
+- Define HITL clearly as a handover mechanism, not just "humans reviewing AI"
+- Focus on the first two trigger categories: error detection and risk management
+- Emphasize structured handover — this isn't ad hoc human involvement
+- Set up expectation that HITL should provide comprehensive safety net
+- Next slide completes the picture with domain expertise and legal requirements
+-->
+
+---
+
+## HITL Triggers (Continued)
+
+| **Key scenario** | **Description** |
+|---|---|
+| **Need for domain expertise** | Complex edge cases beyond AI training scope |
+| | Nuanced judgment calls requiring contextual understanding |
+| | Ethical considerations and value‑based decisions |
+| **Legal/regulatory mandates** | Healthcare diagnostics requiring physician approval |
+| | Financial lending decisions with fair lending requirements |
+| | Criminal justice applications with due process rights |
+
+- HITL offers defence to AI limitations; but faces issues — _speed, scale, bias, skillsgap_
+
+<!--
+Speaker notes:
+- Human expertise 
+- Complete the four trigger categories: domain expertise and legal/regulatory mandates
+- Domain expertise: AI may lack context for complex edge cases or ethical nuance
+- Legal/regulatory: Some domains explicitly require human decision‑makers
+- "The Promise" sets up expectation that HITL should work as comprehensive safety net
+- "Reality Check" transitions to next section showing why this promise fails in practice
+- This sets up the five failure modes that follow
+- Failure trigger category: speed, scale, bias, and skill gaps
+-->
+
+---
+
+## Why This Matters
+
+- **$460M in 45 minutes**: Knight Capital flash crash (2012)
+- **10,000 families wrongfully penalized**: Dutch childcare scandal
+- **30% error miss rate**: Hospital audits of AI diagnostic reviews
+- **95% false positive rate**: AML alert systems overwhelming investigators
+
+HITL alone is insufficient for high‑stakes AI deployment.
+
+<!--
+Speaker notes:
+- Lead with the dramatic statistics to grab attention
+- Knight Capital: $460M lost in 45 minutes because humans couldn't react fast enough
+- Dutch scandal: Automation bias led to wrongful penalties for 10,000 families
+- Hospital study: Clinicians missed 30% of AI diagnostic errors due to overtrust
+- Set up the problem: HITL isn't the silver bullet many assume it to be
+-->
+
+---
+
+## What You'll Learn
+
+After this presentation, you'll be able to:
+- **Diagnose** HITL failure modes in your own systems
+- **Evaluate** when HITL is insufficient and what safeguards to add  
+- **Implement** discriminator agents, monitoring, and governance controls
+- **Prioritize** remediation steps using a risk‑based roadmap
+
+<!--
+Speaker notes:
+- These are concrete, actionable outcomes
+- Each bullet represents a practical skill they can apply immediately
+- Emphasize the move from theory to practice
+-->
+
+---
+
+## Five Failure Modes of HITL
+
+1. **Speed Mismatch**: Microsecond AI vs. second‑scale humans _(Knight Capital: 45 minutes, $460M)_
+2. **Scale Mismatch**: 10,000+ daily alerts vs. limited reviewers _(AML: 95% false positives)_
+3. **Overtrust**: Automation bias hides critical errors _(Hospital study: 30% miss rate)_
+4. **Skill Erosion**: "Out‑of‑the‑loop" degraded expertise _(Tesla Autopilot incidents)_
+5. **Coordination Gaps**: Unclear handovers and protocols _(Dutch childcare: role confusion)_
+
+<!--
+Speaker notes:
+- Briefly explain each failure mode with a 1-line real-world example.
+- Speed mismatch: trading systems / AVs. Scale mismatch: AML alerts.
+- Overtrust: clinicians trusting a plausible but wrong diagnosis.
+-->
+
+<!--
+Speaker notes:
+- Each failure mode is paired with a real‑world example for impact
+- Speed: Knight Capital lost $460M in 45 minutes—no human could intervene
+- Scale: Banks process 10,000+ AML alerts daily with 95% false positive rates
+- Overtrust: Hospital study showed clinicians missed 30% of AI diagnostic errors
+- Skill erosion: Tesla Autopilot incidents where drivers weren't ready to take control
+- Coordination: Dutch childcare scandal—unclear roles led to mass wrongful penalties
+-->
+
+---
+
+## Financial Services: When Structure Deceives
+
+**The Problem:**
+- AI extracts regulatory requirements from EMIR, MiFID, CFTC rules
+- **Hallucination risk**: LLMs invent non‑existent field requirements
+- **False confidence**: Well‑formatted JSON output appears trustworthy
+- **Scale challenge**: Hundreds of fields vs. limited compliance staff
+
+**Real Impact:**
+- Potential fines: >$50M for insufficient swap reporting
+- Deutsche Bank: $150M AML penalty for ongoing failures
+
+<!--
+Speaker notes:
+- Mention the Dutch childcare example briefly as an anecdote about overtrust and scale.
+- Emphasize audit trails and explainability for regulatory inspections.
+-->
+
+<!--
+Speaker notes:
+- Focus on the deception: structured output (JSON/tables) looks authoritative but can be wrong
+- Regulatory extraction is a perfect storm: complex rules + high stakes + volume
+- Real penalties: Deutsche Bank $150M, potential CFTC fines >$50M
+- The formatted output creates false confidence—humans trust neat tables
+-->
+
+---
+
+## Healthcare: Life‑or‑Death Automation Bias
+
+**The Evidence:**
+- Hospital audits: Clinicians miss **30% of AI diagnostic errors**
+- Emergency departments: Time pressure prevents thorough AI output validation
+- Training gaps: Physicians lack awareness of AI system limitations
+
+**Why HITL Fails:**
+- **Automation bias**: Trusting confident AI assessments of "normal" results
+- **Mode confusion**: Unclear guidance on when to override AI recommendations
+- **Workload pressure**: No time for careful review during patient surges
+
+<!--
+Speaker notes:
+- Stress patient-safety focus. Cite need for prospective trials, not just retrospective validation.
+- Note privacy constraints and medico-legal implications.
+-->
+
+<!--
+Speaker notes:
+- 30% error miss rate is catastrophic in healthcare—that's life‑or‑death territory
+- Automation bias: when AI says "normal," clinicians often don't look closer
+- Emergency departments are pressure cookers—no time for careful validation
+- Mode confusion: doctors don't know when to trust vs. question AI
+-->
+
+---
+
+## Transportation: Split‑Second Decisions
+
+**NHTSA Findings (2023):**
+- Multiple fatal Tesla Autopilot incidents
+- Drivers had **seconds** to react, weren't ready to take control
+- "Out‑of‑the‑loop" problem: Skill erosion from over‑reliance
+
+**The Core Issue:**
+- AI operates in **milliseconds**
+- Human reaction time: **1‑3 seconds**  
+- Handover complexity: Mode awareness, situational context, skill maintenance
+
+<!--
+Speaker notes:
+- Use a quick scenario: unexpected road debris — who intervenes and when?
+- Mention simulation-to-real validation as cost-effective before fleet testing.
+-->
+
+<!--
+Speaker notes:
+- NHTSA investigations documented multiple fatal incidents
+- The timing mismatch is fundamental: AI acts in milliseconds, humans need seconds
+- "Out‑of‑the‑loop" problem: when drivers rely on automation, they lose situational awareness
+- This isn't just about autonomous vehicles—it applies to any human‑AI handover scenario
+-->
+
+---
+
+## The Solution: Discriminator Agents
+
+**What they are:**
+Specialized AI systems that detect errors, hallucinations, or inconsistencies in other AI outputs
+
+**Architecture Pattern:**
+```
+Source → Primary AI → Output → Discriminator AI → Flagged Items → Human Review
+```
+
+**Types:**
+- **Binary classifiers**: Error/No‑error detection
+- **Consistency checkers**: Cross‑reference with source material  
+- **Adversarial critics**: Challenge model outputs
+- **Provenance verifiers**: Trace data lineage
+
+<!--
+Speaker notes:
+- Explain the 'second opinion' metaphor; compare to human peer-review.
+- Walk through an example architecture briefly (extractor -> discriminator -> human review).
+- Mention tuning tradeoffs: too many false positives create workload; too few miss issues.
+-->
+
+<!--
+Speaker notes:
+- Explain discriminator agents as "automated peer review"
+- Show the simple architecture: primary AI generates, discriminator validates, humans focus on flagged items
+- This scales human attention to where it's most needed
+- Walk through each type briefly with examples: binary (good/bad), consistency (matches source?), adversarial (challenge assumptions), provenance (where did this come from?)
+-->
+
+---
+
+## Concrete Monitoring Metrics
+
+**Performance Thresholds:**
+- **Model drift**: Alert if accuracy drops >5% from baseline
+- **Human interception**: Warn if <80% error catch rate  
+- **Confidence escalation**: Review if AI confidence <70% on critical outputs
+- **Anomaly rate**: Flag if >10% of outputs marked unusual in 24h
+
+**Real Examples:**
+- **GLUE/SuperGLUE**: NLP benchmarks, target >90% accuracy
+- **ImageNet**: Computer vision, target >95% top‑5 accuracy  
+- **Financial datasets**: <1% hallucination rate in regulatory extraction
+
+<!--
+Speaker notes:
+- These are concrete, measurable thresholds organizations can implement today
+- Walk through what triggers each alert and who responds
+- Emphasize the importance of baseline establishment before setting thresholds
+- Financial datasets: mention CFTC swap reporting as a concrete example
+-->
+
+---
+
+## Your 12‑Month Roadmap
+
+**Phase 1: Foundation (0‑3 months)**
+✓ Establish baselines with benchmark datasets  
+✓ Implement structured logging and audit trails  
+✓ Define concrete alerting thresholds  
+
+**Phase 2: Detection (3‑6 months)**  
+✓ Deploy continuous drift monitoring  
+✓ Add discriminator agents for high‑risk outputs  
+✓ Start measuring human interception rates  
+
+**Phase 3: Prevention (6‑12 months)**
+✓ Implement automated circuit breakers  
+✓ Add ensemble validation for critical decisions  
+✓ Establish incident response playbooks
+
+```json
+<!--
+Speaker notes:
+- This is a practical 12‑month implementation timeline
+- Phase 1: Can't monitor what you don't measure—start with baselines
+- Phase 2: Add the safety nets—monitoring and discriminators catch problems
+- Phase 3: Prevention—circuit breakers and ensembles stop problems before they happen
+- Encourage attendees to identify where they are and what their next 30‑day sprint should be
+-->
+
+---
+
+## Audit Trail Schema
+
+```json
+{
+  "event_id": "uuid",
+  "timestamp": "2025-09-02T10:00:00Z",
+  "input": {"source": "doc123"},
+  "ai_output": {"model": "v1.2", "prediction": "...", "confidence": 0.85},
+  "discriminator": {"model": "discA", "flag": true, "reason": "inconsistency"},
+  "human_review": {"reviewer": "user456", "action": "approve", "notes": "..."},
+  "outcome": {"final": "approved", "error_detected": false}
+}
+```
+
+**Key Requirements:**
+- Immutable storage for regulatory compliance
+- Accessible to auditors with proper retention policies  
+- Captures full decision lineage for post‑incident analysis
+```
+<!--
+Speaker notes:
+- Walk through each field and explain why it matters for compliance and debugging
+- Immutable storage: can't delete or modify logs after creation
+- Retention policies: how long to keep logs varies by regulation and use case
+- This schema captures the full decision flow: input → AI → discriminator → human → outcome
+-->
+
+---
+
+## Key Implementation Patterns
+
+**Automated Circuit Breakers:**
+- Financial: Trading halts when anomalies detected (<1 second response)
+- Healthcare: Confidence‑based escalation to senior clinicians
+- Regulatory: Stop processing when hallucination rate exceeds threshold
+
+**UI Design for Trust Calibration:**
+- Show confidence scores and uncertainty ranges
+- Highlight source material for AI conclusions
+- Force deliberation on high‑risk overrides
+- Provide "second opinion" views from ensemble models
+
+<!--
+Speaker notes:
+- Circuit breakers: give examples from each domain—financial (<1 sec), healthcare (escalation), regulatory (threshold‑based)
+- UI design is critical for trust calibration—help humans make better decisions
+- Show confidence, don't hide uncertainty, make overrides deliberate not accidental
+- Ensemble models provide "second opinions" that humans can compare
+-->
+
+---
+
+## The Bottom Line
+
+**HITL is necessary but not sufficient**
+
+**The evidence:**
+- Knight Capital: $460M in 45 minutes (speed mismatch)
+- Dutch childcare: 10,000 families wrongfully penalized (automation bias)  
+- Hospital study: 30% diagnostic error miss rate (overtrust)
+
+**The solution:**
+Layered defenses with discriminator agents, automated safeguards, and measurable monitoring
+
+**Your next step:**
+Start with benchmarks and baseline measurements—you can't improve what you don't measure
+
+<!--
+Speaker notes:
+- Close with the core message: HITL is necessary but not sufficient  
+- Repeat the key evidence that proves the point—these aren't hypothetical risks
+- End with a concrete next step: measurement comes before improvement
+- Offer to share resources and templates for implementation
+-->
+
+---
+
+## Resources & Next Steps
+
+**Take Action:**
+- Download audit trail schema and monitoring templates
+- Schedule baseline measurement workshop with your team
+- Identify your highest‑risk HITL scenarios for discriminator pilots
+
+**Research & Standards:**
+- EU AI Act compliance requirements
+- NIST AI Risk Management Framework  
+- Model cards and data sheets for documentation
+
+**Contact:** For implementation templates and case study details
+
+---
+
+<!-- 
+Final speaker notes:
+- Total presentation time: 25‑30 minutes plus Q&A
+- For technical audiences: expand discriminator architecture and metrics sections
+- For executives: focus on business impact, compliance, and roadmap
+- Always end with concrete next steps attendees can take immediately
+-->
