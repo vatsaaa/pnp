@@ -1,5 +1,5 @@
-# Evolving AI Integration: Building on OpenAPI's Foundation
-*A Collaborative Path for Agent-Aware API Standards*
+# MCP Or Enhanced OpenAPI: The AI Integration Dilemma
+*Need for a collaborative path for AI-Agent-Aware API Standards*
 
 **Copyright:** © 2025 [Ankur Vatsa](mailto:ankur.vatsa@gmail.com). All rights reserved.
 
